@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             xmlns:svc="clr-namespace:MatyeApp.Services;assembly=MatyeApp"
+             x:Class="MatyeApp.Views.ServicesView">
+
+    <UserControl.Resources>
+        <svc:ImagePathConverter x:Key="ImgConv"/>
+    </UserControl.Resources>
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="24,20,24,16">
+
+        <TextBlock Grid.Row="0" Text="Услуги" Classes="title"/>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,12">
+            <TextBox Name="SearchBox" Watermark="Поиск..." Width="180" Margin="0,0,8,0"
+                     TextChanged="SearchBox_TextChanged"/>
+            <ComboBox Name="CategoryFilter" PlaceholderText="Категория" Width="150" Margin="0,0,8,0"
+                      SelectionChanged="Filter_Changed"/>
+            <ComboBox Name="CollectionFilter" PlaceholderText="Коллекция" Width="150" Margin="0,0,8,0"
+                      SelectionChanged="Filter_Changed"/>
+            <Button Name="SortBtn" Content="А→Я" Classes="secondary" Margin="0,0,8,0" Click="SortBtn_Click"/>
+            <Button Name="AddBtn" Classes="primary" Content="+ Добавить" Margin="0,0,6,0" Click="AddBtn_Click"/>
+            <Button Name="EditBtn" Classes="secondary" Content="Изменить" Margin="0,0,6,0" Click="EditBtn_Click"/>
+            <Button Name="DeleteBtn" Classes="danger" Content="Удалить" Click="DeleteBtn_Click"/>
+        </WrapPanel>
+
+        <dg:DataGrid Grid.Row="2" Name="ServicesGrid"
+                     IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                     SelectionMode="Single" DoubleTapped="ServicesGrid_DoubleTapped"
+                     RowHeight="52">
+            <dg:DataGrid.Columns>
+                <dg:DataGridTemplateColumn Header="ФОТО" Width="64">
+                    <dg:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding imageUrl, Converter={StaticResource ImgConv}}"
+                                   Width="44" Height="44" Stretch="UniformToFill"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </dg:DataGridTemplateColumn.CellTemplate>
+                </dg:DataGridTemplateColumn>
+                <dg:DataGridTextColumn Header="НАЗВАНИЕ"   Binding="{Binding serviceName}" Width="*"/>
+                <dg:DataGridTextColumn Header="КАТЕГОРИЯ"  Binding="{Binding Category.categoryName}" Width="130"/>
+                <dg:DataGridTextColumn Header="КОЛЛЕКЦИЯ"  Binding="{Binding Collection.collectionName}" Width="130"/>
+                <dg:DataGridTextColumn Header="ЦЕНА"       Binding="{Binding price}" Width="80"/>
+                <dg:DataGridTextColumn Header="ИЗМЕНЕНО"   Binding="{Binding updatedAt}" Width="150"/>
+            </dg:DataGrid.Columns>
+        </dg:DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10" Spacing="8">
+            <Button Name="PrevBtn" Classes="secondary" Content="←" Click="PrevBtn_Click"/>
+            <TextBlock Name="PageLabel" Classes="muted" VerticalAlignment="Center"/>
+            <Button Name="NextBtn" Classes="secondary" Content="→" Click="NextBtn_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Name="StatusLabel" Classes="muted"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             x:Class="MatyeApp.Views.QualificationRequestsView">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="24,20,24,16">
+        <TextBlock Grid.Row="0" Text="Заявки на квалификацию" Classes="title"/>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,12">
+            <ComboBox Name="StatusFilter" PlaceholderText="Все статусы" Width="180" Margin="0,0,8,0"
+                      SelectionChanged="StatusFilter_Changed"/>
+            <Button Classes="primary" Content="✓ Одобрить" Margin="0,0,6,0" Click="ApproveBtn_Click"/>
+            <Button Classes="danger" Content="✕ Отклонить" Click="RejectBtn_Click"/>
+        </WrapPanel>
+
+        <dg:DataGrid Grid.Row="2" Name="RequestsGrid"
+                     IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                     SelectionMode="Single">
+            <dg:DataGrid.Columns>
+                <dg:DataGridTextColumn Header="МАСТЕР"       Binding="{Binding Master.User.login}" Width="*"/>
+                <dg:DataGridTextColumn Header="КВАЛИФИКАЦИЯ" Binding="{Binding Master.qualificationLevel}" Width="130"/>
+                <dg:DataGridTextColumn Header="ДАТА ЗАЯВКИ"  Binding="{Binding requestDate}" Width="160"/>
+                <dg:DataGridTextColumn Header="СТАТУС"       Binding="{Binding status}" Width="140"/>
+            </dg:DataGrid.Columns>
+        </dg:DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10" Spacing="8">
+            <Button Name="PrevBtn" Classes="secondary" Content="←" Click="PrevBtn_Click"/>
+            <TextBlock Name="PageLabel" Classes="muted" VerticalAlignment="Center"/>
+            <Button Name="NextBtn" Classes="secondary" Content="→" Click="NextBtn_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Name="StatusLabel" Classes="muted"/>
+    </Grid>
+</UserControl>

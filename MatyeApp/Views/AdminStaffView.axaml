@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MatyeApp.Views.AdminStaffView">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="340" Spacing="6">
+            <TextBlock Text="Добавить сотрудника" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+            <TextBlock Text="Логин" Classes="label"/>
+            <TextBox Name="LoginBox"/>
+
+            <TextBlock Text="Пароль" Classes="label" Margin="0,10,0,0"/>
+            <TextBox Name="PasswordBox" PasswordChar="•"/>
+
+            <TextBlock Text="Email" Classes="label" Margin="0,10,0,0"/>
+            <TextBox Name="EmailBox"/>
+
+            <TextBlock Text="Телефон" Classes="label" Margin="0,10,0,0"/>
+            <TextBox Name="PhoneBox"/>
+
+            <TextBlock Text="Роль" Classes="label" Margin="0,10,0,0"/>
+            <ComboBox Name="RoleBox" HorizontalAlignment="Stretch">
+                <ComboBoxItem Content="Мастер"/>
+                <ComboBoxItem Content="Модератор"/>
+            </ComboBox>
+
+            <Button Classes="primary" Content="Создать"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                    Margin="0,16,0,0" Click="CreateBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

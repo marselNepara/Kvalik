@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             x:Class="MatyeApp.Views.MastersView">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="24,20,24,16">
+        <TextBlock Grid.Row="0" Text="Мастера" Classes="title"/>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,12">
+            <Button Name="AssignBtn" Classes="secondary" Content="Привязать услугу" Margin="0,0,6,0" Click="AssignBtn_Click"/>
+            <Button Name="UnassignBtn" Classes="danger" Content="Отвязать" Margin="0,0,6,0" Click="UnassignBtn_Click"/>
+            <Button Name="UpgradeBtn" Classes="secondary" Content="↑ Квалификация" Click="UpgradeBtn_Click"/>
+        </WrapPanel>
+
+        <dg:DataGrid Grid.Row="2" Name="MastersGrid"
+                     IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                     SelectionMode="Single">
+            <dg:DataGrid.Columns>
+                <dg:DataGridTextColumn Header="ЛОГИН"         Binding="{Binding User.login}" Width="*"/>
+                <dg:DataGridTextColumn Header="КВАЛИФИКАЦИЯ"  Binding="{Binding qualificationLevel}" Width="120"/>
+                <dg:DataGridTextColumn Header="BIO"           Binding="{Binding bio}" Width="*"/>
+            </dg:DataGrid.Columns>
+        </dg:DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10" Spacing="8">
+            <Button Name="PrevBtn" Classes="secondary" Content="←" Click="PrevBtn_Click"/>
+            <TextBlock Name="PageLabel" Classes="muted" VerticalAlignment="Center"/>
+            <Button Name="NextBtn" Classes="secondary" Content="→" Click="NextBtn_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Name="StatusLabel" Classes="muted"/>
+    </Grid>
+</UserControl>

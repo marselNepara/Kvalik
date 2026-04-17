@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             x:Class="MatyeApp.Views.MasterScheduleView">
+
+    <ScrollViewer>
+        <StackPanel Margin="24,20" Spacing="16">
+            <TextBlock Text="Моё расписание" Classes="title"/>
+
+            <TextBlock Text="Записи ко мне" FontSize="13" FontWeight="SemiBold"/>
+            <dg:DataGrid Name="AppointmentsGrid"
+                         IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                         SelectionMode="Single" Height="220">
+                <dg:DataGrid.Columns>
+                    <dg:DataGridTextColumn Header="КЛИЕНТ"   Binding="{Binding User.login}" Width="*"/>
+                    <dg:DataGridTextColumn Header="УСЛУГА"   Binding="{Binding MasterService.Service.serviceName}" Width="*"/>
+                    <dg:DataGridTextColumn Header="ДАТА"     Binding="{Binding appointmentDate}" Width="150"/>
+                    <dg:DataGridTextColumn Header="ОЧЕРЕДЬ"  Binding="{Binding queueNumber}" Width="80"/>
+                    <dg:DataGridTextColumn Header="СТАТУС"   Binding="{Binding status}" Width="110"/>
+                </dg:DataGrid.Columns>
+            </dg:DataGrid>
+
+            <TextBlock Text="Мои услуги" FontSize="13" FontWeight="SemiBold" Margin="0,8,0,0"/>
+            <dg:DataGrid Name="ServicesGrid"
+                         IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                         SelectionMode="Single" Height="180">
+                <dg:DataGrid.Columns>
+                    <dg:DataGridTextColumn Header="УСЛУГА" Binding="{Binding Service.serviceName}" Width="*"/>
+                    <dg:DataGridTextColumn Header="ЦЕНА"   Binding="{Binding Service.price}" Width="110"/>
+                </dg:DataGrid.Columns>
+            </dg:DataGrid>
+
+            <Button Classes="secondary" Content="Подать заявку на повышение квалификации"
+                    HorizontalAlignment="Left" Click="RequestUpgradeBtn_Click"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

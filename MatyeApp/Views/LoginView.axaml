@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MatyeApp.Views.LoginView">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="320" Spacing="6">
+            <Image Source="avares://MatyeApp/Assets/Logo.png" Width="40" Height="40"
+                   HorizontalAlignment="Center" Margin="0,0,0,16" Opacity="0.8"/>
+            <TextBlock Text="Матье" FontSize="18" FontWeight="SemiBold"
+                       HorizontalAlignment="Center" Margin="0,0,0,4"/>
+            <TextBlock Text="Войдите в аккаунт" Classes="muted"
+                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Логин" Classes="label"/>
+            <TextBox Name="LoginBox" Watermark="логин"/>
+
+            <TextBlock Text="Пароль" Classes="label" Margin="0,10,0,0"/>
+            <TextBox Name="PasswordBox" Watermark="пароль" PasswordChar="•"/>
+
+            <Button Classes="primary" Content="Войти"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                    Margin="0,16,0,0" Click="LoginBtn_Click"/>
+
+            <Button Content="Нет аккаунта? Зарегистрироваться"
+                    Classes="secondary" HorizontalAlignment="Center"
+                    Margin="0,4,0,0" Click="RegisterLink_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

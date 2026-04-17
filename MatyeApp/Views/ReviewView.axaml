@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MatyeApp.Views.ReviewView">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="360" Spacing="6">
+            <TextBlock Text="Оставить отзыв" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+            <TextBlock Text="Тип" Classes="label"/>
+            <ComboBox Name="TypeBox" HorizontalAlignment="Stretch" SelectionChanged="TypeBox_SelectionChanged">
+                <ComboBoxItem Content="Об услуге"/>
+                <ComboBoxItem Content="О мастере"/>
+            </ComboBox>
+
+            <TextBlock Text="Выберите" Classes="label" Margin="0,10,0,0"/>
+            <ComboBox Name="TargetBox" HorizontalAlignment="Stretch"/>
+
+            <TextBlock Text="Рейтинг (1–5)" Classes="label" Margin="0,10,0,0"/>
+            <NumericUpDown Name="RatingBox" Minimum="1" Maximum="5" Value="5"/>
+
+            <TextBlock Text="Комментарий" Classes="label" Margin="0,10,0,0"/>
+            <TextBox Name="CommentBox" Height="72" AcceptsReturn="True"/>
+
+            <Button Classes="primary" Content="Отправить"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                    Margin="0,16,0,0" Click="SubmitBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

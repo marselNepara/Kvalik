@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MatyeApp.Views.AppointmentView">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="340" Spacing="6">
+            <Button Content="← Назад" Classes="secondary" HorizontalAlignment="Left"
+                    Margin="0,0,0,16" Click="BackBtn_Click"/>
+            <TextBlock Text="Запись на услугу" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+            <TextBlock Text="Мастер" Classes="label"/>
+            <ComboBox Name="MasterBox" HorizontalAlignment="Stretch"/>
+
+            <TextBlock Text="Дата" Classes="label" Margin="0,10,0,0"/>
+            <DatePicker Name="DatePicker" HorizontalAlignment="Stretch"/>
+
+            <Button Classes="primary" Content="Записаться"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                    Margin="0,16,0,0" Click="BookBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

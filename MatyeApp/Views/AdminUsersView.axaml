@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             x:Class="MatyeApp.Views.AdminUsersView">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="24,20,24,16">
+        <TextBlock Grid.Row="0" Text="Пользователи" Classes="title"/>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,12">
+            <Button Name="EditBtn" Classes="secondary" Content="Изменить" Margin="0,0,6,0" Click="EditBtn_Click"/>
+            <Button Name="DeleteBtn" Classes="danger" Content="Удалить" Click="DeleteBtn_Click"/>
+        </WrapPanel>
+
+        <dg:DataGrid Grid.Row="2" Name="UsersGrid"
+                     IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                     SelectionMode="Single" DoubleTapped="UsersGrid_DoubleTapped">
+            <dg:DataGrid.Columns>
+                <dg:DataGridTextColumn Header="ЛОГИН"   Binding="{Binding login}" Width="*"/>
+                <dg:DataGridTextColumn Header="EMAIL"   Binding="{Binding email}" Width="*"/>
+                <dg:DataGridTextColumn Header="ТЕЛЕФОН" Binding="{Binding phone}" Width="130"/>
+                <dg:DataGridTextColumn Header="РОЛЬ"    Binding="{Binding Role.roleName}" Width="110"/>
+                <dg:DataGridTextColumn Header="БАЛАНС"  Binding="{Binding balance}" Width="90"/>
+            </dg:DataGrid.Columns>
+        </dg:DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10" Spacing="8">
+            <Button Name="PrevBtn" Classes="secondary" Content="←" Click="PrevBtn_Click"/>
+            <TextBlock Name="PageLabel" Classes="muted" VerticalAlignment="Center"/>
+            <Button Name="NextBtn" Classes="secondary" Content="→" Click="NextBtn_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Name="StatusLabel" Classes="muted"/>
+    </Grid>
+</UserControl>

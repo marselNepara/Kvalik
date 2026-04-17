@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MatyeApp.Views.ServiceDetailView">
+
+    <ScrollViewer>
+        <StackPanel Margin="24,20" Spacing="12" MaxWidth="680">
+            <Button Content="← Назад" Classes="secondary" HorizontalAlignment="Left" Click="BackBtn_Click"/>
+
+            <Image Name="ServiceImage" MaxHeight="340" MaxWidth="480"
+                   Stretch="Uniform" HorizontalAlignment="Left"
+                   Margin="0,8,0,4"/>
+
+            <TextBlock Name="NameLabel" FontSize="20" FontWeight="SemiBold"/>
+            <TextBlock Name="DescLabel" Classes="muted" TextWrapping="Wrap"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="32" Margin="0,8,0,0">
+                <StackPanel Spacing="2">
+                    <TextBlock Text="ЦЕНА" Classes="label"/>
+                    <TextBlock Name="PriceLabel" FontSize="16" FontWeight="SemiBold"/>
+                </StackPanel>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="КАТЕГОРИЯ" Classes="label"/>
+                    <TextBlock Name="CategoryLabel"/>
+                </StackPanel>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="КОЛЛЕКЦИЯ" Classes="label"/>
+                    <TextBlock Name="CollectionLabel"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="32">
+                <StackPanel Spacing="2">
+                    <TextBlock Text="СОЗДАНО" Classes="label"/>
+                    <TextBlock Name="CreatedLabel" Classes="muted"/>
+                </StackPanel>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="ИЗМЕНЕНО" Classes="label"/>
+                    <TextBlock Name="UpdatedLabel" Classes="muted"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Button Name="BookBtn" Classes="primary" Content="Записаться"
+                    HorizontalAlignment="Left" Margin="0,8,0,0" Click="BookBtn_Click"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

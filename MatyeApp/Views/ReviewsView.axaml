@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             x:Class="MatyeApp.Views.ReviewsView">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="24,20,24,16">
+        <TextBlock Grid.Row="0" Text="Отзывы" Classes="title"/>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,12">
+            <ComboBox Name="TypeFilter" PlaceholderText="Все отзывы" Width="160" Margin="0,0,8,0"
+                      SelectionChanged="TypeFilter_Changed"/>
+            <ComboBox Name="TargetFilter" PlaceholderText="Все" Width="200"
+                      SelectionChanged="TargetFilter_Changed"/>
+        </WrapPanel>
+
+        <dg:DataGrid Grid.Row="2" Name="ReviewsGrid"
+                     IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                     SelectionMode="Single" RowHeight="44">
+            <dg:DataGrid.Columns>
+                <dg:DataGridTextColumn Header="АВТОР"    Binding="{Binding User.login}" Width="120"/>
+                <dg:DataGridTextColumn Header="ТИП"      Binding="{Binding ReviewType}" Width="90"/>
+                <dg:DataGridTextColumn Header="ОБЪЕКТ"   Binding="{Binding TargetName}" Width="*"/>
+                <dg:DataGridTextColumn Header="РЕЙТИНГ"  Binding="{Binding RatingStars}" Width="90"/>
+                <dg:DataGridTextColumn Header="КОММЕНТАРИЙ" Binding="{Binding comment}" Width="*"/>
+                <dg:DataGridTextColumn Header="ДАТА"     Binding="{Binding createdAt}" Width="140"/>
+            </dg:DataGrid.Columns>
+        </dg:DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10" Spacing="8">
+            <Button Name="PrevBtn" Classes="secondary" Content="←" Click="PrevBtn_Click"/>
+            <TextBlock Name="PageLabel" Classes="muted" VerticalAlignment="Center"/>
+            <Button Name="NextBtn" Classes="secondary" Content="→" Click="NextBtn_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Name="StatusLabel" Classes="muted"/>
+    </Grid>
+</UserControl>

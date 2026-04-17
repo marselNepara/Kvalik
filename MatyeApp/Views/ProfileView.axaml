@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             x:Class="MatyeApp.Views.ProfileView">
+
+    <ScrollViewer>
+        <StackPanel Margin="24,20" Spacing="16" MaxWidth="760">
+            <TextBlock Text="Профиль" Classes="title"/>
+
+            <Border Classes="card">
+                <Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Логин" Classes="label" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Name="LoginLabel" Margin="0,0,0,10"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Email" Classes="label" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Name="EmailLabel" Margin="0,0,0,10"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Телефон" Classes="label" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Name="PhoneLabel" Margin="0,0,0,10"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Роль" Classes="label" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Name="RoleLabel" Margin="0,0,0,10"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Баланс" Classes="label" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Name="BalanceLabel" FontWeight="SemiBold"/>
+                </Grid>
+            </Border>
+
+            <Button Classes="primary" Content="Пополнить баланс"
+                    HorizontalAlignment="Left" Click="TopUpBtn_Click"/>
+
+            <TextBlock Text="История записей" FontSize="14" FontWeight="SemiBold" Margin="0,8,0,0"/>
+
+            <dg:DataGrid Name="AppointmentsGrid"
+                         IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                         SelectionMode="Single" Height="220">
+                <dg:DataGrid.Columns>
+                    <dg:DataGridTextColumn Header="УСЛУГА"   Binding="{Binding MasterService.Service.serviceName}" Width="*"/>
+                    <dg:DataGridTextColumn Header="МАСТЕР"   Binding="{Binding MasterService.Master.User.login}" Width="130"/>
+                    <dg:DataGridTextColumn Header="ДАТА"     Binding="{Binding appointmentDate}" Width="150"/>
+                    <dg:DataGridTextColumn Header="ОЧЕРЕДЬ"  Binding="{Binding queueNumber}" Width="80"/>
+                    <dg:DataGridTextColumn Header="СТАТУС"   Binding="{Binding status}" Width="110"/>
+                </dg:DataGrid.Columns>
+            </dg:DataGrid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

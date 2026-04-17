@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MatyeApp.MainWindow"
+        Title="Матье"
+        Width="1280" Height="720"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="None"
+        Icon="avares://MatyeApp/Assets/Logo.ico">
+
+    <Grid RowDefinitions="32,*">
+
+        <!-- TitleBar -->
+        <Grid Grid.Row="0" Background="{StaticResource BgPanelBrush}" ColumnDefinitions="Auto,*,Auto,Auto">
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0">
+                <Image Source="avares://MatyeApp/Assets/Logo.png" Width="16" Height="16" Margin="0,0,8,0" Opacity="0.7"/>
+                <TextBlock Text="Матье" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Border Grid.Column="1" Background="Transparent" PointerPressed="TitleBar_PointerPressed"/>
+            <Button Grid.Column="2" Classes="tbBtn" Content="—" Click="MinimizeBtn_Click"/>
+            <Button Grid.Column="3" Classes="tbBtn tbClose" Content="✕" Click="CloseBtn_Click"/>
+        </Grid>
+
+        <!-- Body -->
+        <Grid Grid.Row="1" ColumnDefinitions="200,*">
+            <Border Grid.Column="0" Background="{StaticResource BgPanelBrush}"
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0">
+                <StackPanel Name="NavPanel" Margin="0,8"/>
+            </Border>
+            <ContentControl Grid.Column="1" Name="ContentArea"/>
+        </Grid>
+    </Grid>
+</Window>

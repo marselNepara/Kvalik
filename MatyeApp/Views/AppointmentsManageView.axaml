@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+             x:Class="MatyeApp.Views.AppointmentsManageView">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="24,20,24,16">
+        <TextBlock Grid.Row="0" Text="Записи" Classes="title"/>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,12">
+            <ComboBox Name="StatusFilter" PlaceholderText="Все статусы" Width="160" Margin="0,0,8,0"
+                      SelectionChanged="StatusFilter_Changed"/>
+            <Button Classes="secondary" Content="Изменить статус" Margin="0,0,6,0" Click="ChangeStatusBtn_Click"/>
+        </WrapPanel>
+
+        <dg:DataGrid Grid.Row="2" Name="AppointmentsGrid"
+                     IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="True"
+                     SelectionMode="Single">
+            <dg:DataGrid.Columns>
+                <dg:DataGridTextColumn Header="КЛИЕНТ"   Binding="{Binding User.login}" Width="*"/>
+                <dg:DataGridTextColumn Header="УСЛУГА"   Binding="{Binding MasterService.Service.serviceName}" Width="*"/>
+                <dg:DataGridTextColumn Header="МАСТЕР"   Binding="{Binding MasterService.Master.User.login}" Width="130"/>
+                <dg:DataGridTextColumn Header="ДАТА"     Binding="{Binding appointmentDate}" Width="150"/>
+                <dg:DataGridTextColumn Header="ОЧЕРЕДЬ"  Binding="{Binding queueNumber}" Width="80"/>
+                <dg:DataGridTextColumn Header="СТАТУС"   Binding="{Binding status}" Width="120"/>
+            </dg:DataGrid.Columns>
+        </dg:DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10" Spacing="8">
+            <Button Name="PrevBtn" Classes="secondary" Content="←" Click="PrevBtn_Click"/>
+            <TextBlock Name="PageLabel" Classes="muted" VerticalAlignment="Center"/>
+            <Button Name="NextBtn" Classes="secondary" Content="→" Click="NextBtn_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Name="StatusLabel" Classes="muted"/>
+    </Grid>
+</UserControl>
